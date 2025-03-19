@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashBoardController;
+use Illuminate\Foundation\Console\RouteCacheCommand;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+Route::group(['prefix' => 'admin'] , function () {
+     
+    Route::get('/home' , [DashBoardController::class, 'home'])->name("home");
+    Route::get('/task' , [DashBoardController::class, 'task_list'])->name("task.list");
 });
 
+// Route::get('/task' , function () {
+//     return view('pages.tasks');
+// });
